@@ -114,34 +114,14 @@ def main():
 
         st.divider()
 
-        # LLM Provider Configuration
-        st.subheader("LLM Configuration")
-        provider_choice = st.selectbox(
-            "Select LLM Provider",
-            options=["Auto-detect", "Groq", "Google Gemini", "OpenAI", "Ollama"],
-            index=0
-        )
-        
-        api_key_input = st.text_input(
-            "API Key (Optional override)",
-            type="password",
-            help="If provided, overrides .env for this session"
-        )
-        if api_key_input:
-            if provider_choice == "Groq":
-                config.GROQ_API_KEY = api_key_input
-                config.DEFAULT_PROVIDER = "groq"
-            elif provider_choice == "Google Gemini":
-                config.GOOGLE_API_KEY = api_key_input
-                config.DEFAULT_PROVIDER = "gemini"
-            elif provider_choice == "OpenAI":
-                config.OPENAI_API_KEY = api_key_input
-                config.DEFAULT_PROVIDER = "openai"
+        # Model Status (Secured via .env)
+        st.subheader("Model Status")
+        st.success("🔒 Configured securely via `.env`")
 
         st.divider()
 
-        # Mandatory Questions Quick Launcher
-        st.subheader("📋 Assignment Test Questions")
+        # Example Questions Quick Launcher
+        st.subheader("💡 Example Questions")
         test_questions = [
             "How long does a proprietor have copyright in a registered design, and can it be extended?",
             "Which classification system is used to register designs?",
