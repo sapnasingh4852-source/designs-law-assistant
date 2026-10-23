@@ -172,7 +172,7 @@ designs-law-assistant/
 
 ### 1. Clone the repository
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/sapnasingh4852-source/designs-law-assistant.git
 cd designs-law-assistant
 ```
 
@@ -428,6 +428,6 @@ git init
 git add .
 git commit -m "Build Designs Law Assistant RAG system"
 git branch -M main
-git remote add origin YOUR_GITHUB_REPO_URL
+git remote add origin https://github.com/sapnasingh4852-source/designs-law-assistant.git
 git push -u origin main
 ```
