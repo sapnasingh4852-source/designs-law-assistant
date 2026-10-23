@@ -13,70 +13,208 @@ st.set_page_config(
 import config
 import rag
 
-# Custom styling for a polished, academic, professional look
+# Premium Google Fonts & Tailored Styling
 st.markdown("""
 <style>
-    .main-title {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        font-size: 2.3rem;
-        font-weight: 700;
-        color: #1E293B;
-        margin-bottom: 0.2rem;
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
+
+    /* Main Hero Banner */
+    .hero-container {
+        background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 60%, #EEF2F6 100%);
+        border: 1px solid #E2E8F0;
+        border-radius: 16px;
+        padding: 2rem 2.2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 100%;
+        background: linear-gradient(180deg, #2563EB 0%, #7C3AED 100%);
+    }
+
+    .main-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 50%, #2563EB 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.4rem;
+    }
+
     .sub-title {
         font-size: 1.05rem;
         color: #475569;
-        margin-bottom: 1.5rem;
+        line-height: 1.6;
+        margin-bottom: 1.2rem;
+        max-width: 900px;
     }
-    .badge {
-        display: inline-block;
-        padding: 0.25rem 0.6rem;
-        font-size: 0.8rem;
+
+    /* Modern Pill Badges */
+    .badge-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+    
+    .pill-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.85rem;
+        font-size: 0.82rem;
         font-weight: 600;
         border-radius: 9999px;
-        background-color: #E0E7FF;
-        color: #3730A3;
-        margin-right: 0.5rem;
-        margin-bottom: 0.8rem;
     }
-    .badge-doc {
-        background-color: #DCFCE7;
-        color: #166534;
+    
+    .pill-blue {
+        background: #EFF6FF;
+        color: #1D4ED8;
+        border: 1px solid #BFDBFE;
     }
+    
+    .pill-green {
+        background: #ECFDF5;
+        color: #047857;
+        border: 1px solid #A7F3D0;
+    }
+    
+    .pill-purple {
+        background: #F5F3FF;
+        color: #6D28D9;
+        border: 1px solid #DDD6FE;
+    }
+
+    /* Result Cards */
     .answer-card {
-        background-color: #F8FAFC;
+        background: #FFFFFF;
         border: 1px solid #E2E8F0;
-        border-left: 5px solid #2563EB;
-        border-radius: 8px;
-        padding: 1.25rem;
-        margin-top: 1.2rem;
-        margin-bottom: 1rem;
+        border-left: 6px solid #2563EB;
+        border-radius: 12px;
+        padding: 1.5rem 1.8rem;
+        margin-top: 1.4rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+        color: #1E293B;
+        font-size: 1.05rem;
+        line-height: 1.7;
     }
-    .not-found-card {
-        background-color: #FFF1F2;
-        border: 1px solid #FECDD3;
-        border-left: 5px solid #E11D48;
-        border-radius: 8px;
-        padding: 1.25rem;
-        margin-top: 1.2rem;
-        margin-bottom: 1rem;
-    }
-    .ref-card {
-        background-color: #F1F5F9;
-        border: 1px solid #CBD5E1;
-        border-radius: 6px;
-        padding: 0.9rem;
-        margin-top: 0.8rem;
-        font-size: 0.92rem;
-    }
-    .ref-header {
+    
+    .card-header-tag {
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.85rem;
         font-weight: 700;
-        color: #334155;
-        margin-bottom: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
-    .stButton>button {
-        border-radius: 6px;
+    
+    .tag-blue {
+        color: #2563EB;
+    }
+
+    .not-found-card {
+        background: #FFF5F5;
+        border: 1px solid #FED7D7;
+        border-left: 6px solid #E11D48;
+        border-radius: 12px;
+        padding: 1.5rem 1.8rem;
+        margin-top: 1.4rem;
+        margin-bottom: 1.2rem;
+        box-shadow: 0 4px 20px -2px rgba(225, 29, 72, 0.06);
+    }
+
+    .not-found-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #9F1239;
+        margin-bottom: 0.4rem;
+    }
+
+    .not-found-desc {
+        color: #4C0519;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    /* Citation Reference Card */
+    .ref-container {
+        background: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        border-radius: 12px;
+        padding: 1.3rem 1.6rem;
+        margin-top: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+    
+    .ref-title {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #334155;
+        margin-bottom: 0.6rem;
+    }
+
+    .ref-content {
+        color: #0F172A;
+        font-size: 0.96rem;
+        line-height: 1.65;
+        font-weight: 500;
+    }
+
+    /* Sidebar Styling */
+    .sidebar-card {
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 10px;
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 0.8rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+    
+    .sidebar-label {
+        font-size: 0.78rem;
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #64748B;
+        margin-bottom: 0.25rem;
+    }
+    
+    .sidebar-value {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: #0F172A;
+    }
+    
+    /* Buttons */
+    .stButton>button {
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.2s ease-in-out;
+    }
+    .stButton>button:hover {
+        transform: translateY(-1px);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -92,61 +230,78 @@ def check_prerequisites():
 def main():
     # Sidebar
     with st.sidebar:
-        st.header("⚖️ System Controls")
+        st.markdown("### ⚖️ System Status")
         
         pdf_exists, chroma_exists = check_prerequisites()
         
-        # Document Status
-        st.subheader("Document Status")
-        if pdf_exists:
-            st.success("✅ `designs_manual.pdf` (87 Pages)")
-        else:
-            st.error("❌ PDF not found in `data/`")
-            st.caption("Place `designs_manual.pdf` into the `data/` directory.")
+        # Document Card
+        st.markdown(
+            f"""
+            <div class="sidebar-card">
+                <div class="sidebar-label">Document Source</div>
+                <div class="sidebar-value">{"✅ designs_manual.pdf (87 Pages)" if pdf_exists else "❌ PDF Missing"}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-        # Vector Database Status
-        st.subheader("Vector Database")
-        if chroma_exists:
-            st.success("✅ ChromaDB Ready")
-        else:
-            st.warning("⚠️ ChromaDB not built")
-            st.caption("Run `python ingest.py` in your terminal to index the PDF.")
+        # Vector Store Card
+        st.markdown(
+            f"""
+            <div class="sidebar-card">
+                <div class="sidebar-label">Vector Database</div>
+                <div class="sidebar-value">{"✅ ChromaDB Indexed (163 Chunks)" if chroma_exists else "⚠️ Not Initialized"}</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-        st.divider()
-
-        # Model Status (Secured via .env)
-        st.subheader("Model Status")
-        st.success("🔒 Configured securely via `.env`")
+        # Security Status Card
+        st.markdown(
+            """
+            <div class="sidebar-card">
+                <div class="sidebar-label">Security & Model</div>
+                <div class="sidebar-value">🔒 Configured via .env</div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         st.divider()
 
         # Example Questions Quick Launcher
-        st.subheader("💡 Example Questions")
-        test_questions = [
-            "How long does a proprietor have copyright in a registered design, and can it be extended?",
-            "Which classification system is used to register designs?",
-            "What is the government fee to register a trademark?",
-            "Who is the current Controller General of Patents?",
-            "What is the fee to register a design?"
+        st.markdown("### 💡 Example Questions")
+        st.caption("Click any question below to test document grounding:")
+
+        example_questions = [
+            ("Q1: Copyright Duration & Extension", "How long does a proprietor have copyright in a registered design, and can it be extended?"),
+            ("Q2: Locarno Classification System", "Which classification system is used to register designs?"),
+            ("Q3: Trademark Govt Fee (Out-of-Scope)", "What is the government fee to register a trademark?"),
+            ("Q4: Controller General Name (Out-of-Scope)", "Who is the current Controller General of Patents?"),
+            ("Q5: Design Registration Fee", "What is the fee to register a design?")
         ]
 
-        for i, q in enumerate(test_questions, 1):
-            if st.button(f"Q{i}: {q[:32]}...", key=f"q_{i}", use_container_width=True):
-                st.session_state["main_input"] = q
+        for label, q_text in example_questions:
+            if st.button(label, key=f"btn_{label[:2]}", use_container_width=True):
+                st.session_state["main_input"] = q_text
                 st.session_state["auto_ask"] = True
 
-    # Main Area
-    st.markdown('<div class="main-title">Designs Law Assistant</div>', unsafe_allow_html=True)
+    # Main Hero Section
     st.markdown(
-        '<div class="sub-title">Ask questions about industrial design registration in India based on the '
-        '<b>Manual of Designs Practice & Procedure</b> (CGPDTM, IP India).</div>',
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        '<span class="badge">RAG System</span>'
-        '<span class="badge badge-doc">Manual: 87 Pages</span>'
-        '<span class="badge">Strict Grounding</span>',
+        """
+        <div class="hero-container">
+            <div class="main-title">Designs Law Assistant</div>
+            <div class="sub-title">
+                Authoritative legal question-answering assistant for industrial designs in India, 
+                grounded strictly in the <b>Manual of Designs Practice & Procedure</b> (CGPDTM, IP India).
+            </div>
+            <div class="badge-container">
+                <span class="pill-badge pill-blue">🏛️ IP India CGPDTM</span>
+                <span class="pill-badge pill-green">📖 87-Page Official Manual</span>
+                <span class="pill-badge pill-purple">🛡️ Strict Document Grounding</span>
+            </div>
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
@@ -165,21 +320,20 @@ def main():
         )
         return
 
-    # Question Input
+    # Question Input Field
     if "main_input" not in st.session_state:
         st.session_state["main_input"] = ""
 
     user_question = st.text_input(
-        "Ask your question:",
+        "Ask a question about design registration in India:",
         key="main_input",
-        placeholder="e.g. How long does a proprietor have copyright in a registered design?"
+        placeholder="e.g. How long does a proprietor have copyright in a registered design, and can it be extended?"
     )
 
-    col1, col2 = st.columns([1, 5])
+    col1, col2 = st.columns([1.2, 6])
     with col1:
-        ask_button = st.button("🔍 Ask", type="primary", use_container_width=True)
+        ask_button = st.button("🔍 Search Manual", type="primary", use_container_width=True)
 
-    # Trigger search either on Ask button click or auto_ask from sidebar
     should_search = ask_button or st.session_state.get("auto_ask", False)
     if st.session_state.get("auto_ask", False):
         st.session_state["auto_ask"] = False
@@ -189,14 +343,14 @@ def main():
             st.warning("⚠️ Please enter a question.")
             return
 
-        with st.spinner("Searching Manual of Designs Practice & Procedure..."):
+        with st.spinner("Searching official manual & verifying document citations..."):
             try:
                 result = rag.answer_question(user_question)
             except Exception as e:
                 err_msg = str(e)
                 if "API key" in err_msg or "API_KEY" in err_msg:
                     st.error(f"🔑 **API Key Error**: {err_msg}")
-                    st.info("💡 Please set your `GROQ_API_KEY`, `GOOGLE_API_KEY`, or `OPENAI_API_KEY` in `.env` or in the sidebar.")
+                    st.info("💡 Please ensure your `GOOGLE_API_KEY` or `GROQ_API_KEY` is set in your `.env` file.")
                 else:
                     st.error(f"Execution Error: {err_msg}")
                 return
@@ -204,49 +358,56 @@ def main():
         answer_text = result["answer"]
         ref_text = result["reference"]
         is_found = result["found"]
-        chunks = result["raw_chunks"]
 
         # Display Answer
+        st.markdown("### Answer")
         if is_found:
-            st.markdown("### Answer")
             st.markdown(
-                f'<div class="answer-card">{answer_text}</div>',
+                f"""
+                <div class="answer-card">
+                    <div class="card-header-tag tag-blue">🏛️ Grounded Manual Evidence</div>
+                    <div>{answer_text}</div>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
-            # Display Reference
+            # Display Grounding Source Reference
             st.markdown("### Reference")
             st.markdown(
-                f'<div class="ref-card"><div class="ref-header">Grounding Source:</div>'
-                f'<pre style="white-space: pre-wrap; margin: 0; font-family: inherit;">{ref_text}</pre></div>',
+                f"""
+                <div class="ref-container">
+                    <div class="ref-title">📖 Source Citation from Document Metadata:</div>
+                    <div class="ref-content">{ref_text.replace('\n', '<br>')}</div>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
         else:
-            st.markdown("### Answer")
             st.markdown(
-                f'<div class="not-found-card">'
-                f'<h4 style="margin: 0; color: #9F1239;">Not found</h4>'
-                f'<p style="margin-top: 0.5rem; margin-bottom: 0; color: #4C0519; font-size: 0.95rem;">'
-                f'The requested information is not present or cannot be reliably supported by the '
-                f'<b>Manual of Designs Practice & Procedure</b>. The system strictly adheres to document '
-                f'grounding and never utilizes external/unverified sources.'
-                f'</p></div>',
+                """
+                <div class="not-found-card">
+                    <div class="not-found-title">Not found</div>
+                    <p class="not-found-desc">
+                        The requested information is not present or cannot be reliably supported by the 
+                        <b>Manual of Designs Practice & Procedure</b>. The system strictly adheres to document 
+                        grounding and never utilizes external or speculative sources.
+                    </p>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
 
             st.markdown("### Reference")
             st.markdown(
-                '<div class="ref-card"><div class="ref-header">Reference:</div>—</div>',
+                """
+                <div class="ref-container">
+                    <div class="ref-title">📖 Source Citation:</div>
+                    <div class="ref-content">— (Information unsupported by the supplied 87-page manual)</div>
+                </div>
+                """,
                 unsafe_allow_html=True
             )
-
-        # Expandable transparency section for viva and evaluation
-        if chunks:
-            with st.expander("🔍 View Retrieved PDF Context Chunks (Evaluation & Viva)"):
-                for idx, chunk in enumerate(chunks, 1):
-                    st.markdown(f"**Chunk {idx}:**")
-                    st.text(chunk)
-                    st.divider()
 
 
 if __name__ == "__main__":

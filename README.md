@@ -399,7 +399,7 @@ This system employs a four-tiered defense against LLM hallucination:
    > *"You must answer the user's question ONLY using the provided context extracted from the Manual of Designs Practice & Procedure... Do NOT use external knowledge, internet information, or make assumptions."*
 2. **Deterministic Fallback (`Not found`)**: If retrieved chunks lack sufficient factual evidence, the model is instructed to output strictly `Not found`.
 3. **Metadata Grounding**: Citations are derived exclusively from authentic metadata parsed from the PDF during ingestion, preventing manufactured chapter or page numbers.
-4. **Transparent Auditability**: An expandable section in the UI exposes the exact chunks and relevance scores retrieved by ChromaDB for complete viva verification.
+4. **Transparent Verification**: Precise source citations (Chapter, Section, and Page) are displayed clearly with each answer for clean and reliable evaluation.
 
 ---
 
